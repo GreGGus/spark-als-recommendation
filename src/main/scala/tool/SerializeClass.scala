@@ -30,21 +30,12 @@ object SerializeClass extends java.io.Serializable {
     randomUUID().toString
   }
 
-  //val zipper = udf[Seq[(String, String)], Seq[String], Seq[String]](_.zip(_))
-//  val zipper = udf { (code_rome_proche: Seq[String], libelles_type_mobilite: Seq[String]) =>
-//    code_rome_proche.zip(libelles_type_mobilite).toArray.map { case (x, y) => CodeRomeProche(x, y) }
-//  }
-
-  // val zipperComp = udf{(code_rome: Seq[String], code_rome_libelle: Seq[String]) =>
-  //   code_rome.zip(code_rome_libelle).toArray.map{ case (x,y) => CompetencyCodeRome(x,y) }
-  // }
 
   val listFlattenUDF = udf((list: Seq[Seq[String]]) => {
     list.flatten
   })
 
 
-  // TODO : Refaire au propre pour obtenir un Array et non une string à split
   def listFlatten: (Seq[String] => String) = (list: Seq[String]) => {
     list.mkString(",")
   }
